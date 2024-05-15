@@ -15,14 +15,14 @@ for page in pages :
     soup = BeautifulSoup(resp.content.decode('euc-kr','replace'), 'html.parser')
 
     lis = soup.find_all('li', {'class':'item-list'})
-    print("=============================================================================================================")
+    print("==============================================Start===============================================================")
     for li in lis:
         link = li.find('div',re.compile('^thumb')).find('a',{'class' : None}).attrs['href']
         img = li.find('img',re.compile('^MS_prod_img_m')).attrs['src']
         title = li.find('div', re.compile('^pr_name')).string
 
         print(f"{img} : {title} : {link}")
-        print("\n ==== detail ===== \n")
+        print("\n ================ detail ============================= \n")
         #detail 정보 
         detail_resp = requests.get(f"{home_url}{link}")
         detail_soup = BeautifulSoup(detail_resp.content.decode('euc-kr','replace'), 'html.parser')
@@ -36,7 +36,7 @@ for page in pages :
 
             print('-------------------------------------------------------------------------------------------------------')
 
-    print("=============================================================================================================")
+    print("=====================================================END========================================================")
 
         
 
